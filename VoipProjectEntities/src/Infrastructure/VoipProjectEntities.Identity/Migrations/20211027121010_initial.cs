@@ -1,5 +1,5 @@
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
 namespace VoipProjectEntities.Identity.Migrations
 {
@@ -180,12 +180,12 @@ namespace VoipProjectEntities.Identity.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "95e91b0c-bd15-471f-b5bc-6c35bb7f5884", "d7be5d6a-8031-4488-b76b-5fc0bc4adff8", "Viewer", "VIEWER" });
+                values: new object[] { "c86f5a1c-4a62-403d-81e9-008ad83b0688", "389eac28-5be2-4b24-9e33-005c1ad73975", "Viewer", "VIEWER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "0b4d3dd5-6956-4c2d-8cd6-dae4e0ed991c", "c74f2084-b730-4a80-93e7-56fc1af42f18", "Administrator", "ADMINISTRATOR" });
+                values: new object[] { "3d877a34-cf2f-4b6d-8f39-0f017b681794", "939dce45-8d4c-4fb9-90cc-1e5ee79125ea", "Administrator", "ADMINISTRATOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

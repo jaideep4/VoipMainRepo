@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Voip2.Domain.Entities;
 using VoipProjectEntities.Application.Contracts;
 using VoipProjectEntities.Domain.Common;
 using VoipProjectEntities.Domain.Entities;
@@ -26,6 +27,9 @@ namespace VoipProjectEntities.Persistence
         public DbSet<Event> Events { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Setting> Settings { get; set; }
+        public DbSet<SubscriptionCustomer> SubscriptionCustomers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
