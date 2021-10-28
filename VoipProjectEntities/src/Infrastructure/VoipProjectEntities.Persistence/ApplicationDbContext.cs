@@ -3,6 +3,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Voip2.Domain.Entities;
+using VoipMainProject.Domain.Entities;
 using VoipProjectEntities.Application.Contracts;
 using VoipProjectEntities.Domain.Common;
 using VoipProjectEntities.Domain.Entities;
@@ -30,6 +31,10 @@ namespace VoipProjectEntities.Persistence
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<SubscriptionCustomer> SubscriptionCustomers { get; set; }
+        public DbSet<AgentCustomer> AgentCustomers { get; set; }
+        public DbSet<BalanceCustomer> BalanceCustomers { get; set; }
+        public DbSet<CallRecordingAgent> CallRecordingAgents { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

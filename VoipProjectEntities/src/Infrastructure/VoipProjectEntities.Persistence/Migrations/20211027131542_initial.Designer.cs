@@ -10,7 +10,7 @@ using VoipProjectEntities.Persistence;
 namespace VoipProjectEntities.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211027121822_initial")]
+    [Migration("20211027131542_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -119,6 +119,92 @@ namespace VoipProjectEntities.Persistence.Migrations
                     b.HasIndex("CustomerID");
 
                     b.ToTable("SubscriptionCustomers");
+                });
+
+            modelBuilder.Entity("VoipMainProject.Domain.Entities.AgentCustomer", b =>
+                {
+                    b.Property<Guid>("AgentCustomerID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AgentName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("ISMigratedAt")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("AgentCustomerID");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("AgentCustomers");
+                });
+
+            modelBuilder.Entity("VoipMainProject.Domain.Entities.BalanceCustomer", b =>
+                {
+                    b.Property<Guid>("BalanceCustomerID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("BalanceAmount")
+                        .HasColumnType("float");
+
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("TranscationType")
+                        .HasColumnType("int");
+
+                    b.HasKey("BalanceCustomerID");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("BalanceCustomers");
+                });
+
+            modelBuilder.Entity("VoipMainProject.Domain.Entities.CallRecordingAgent", b =>
+                {
+                    b.Property<Guid>("CallRecordingAgentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AgentCustomerID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("CallStatus")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Cost")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Country")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Duration")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("CallRecordingAgentID");
+
+                    b.HasIndex("AgentCustomerID");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("CallRecordingAgents");
                 });
 
             modelBuilder.Entity("VoipProjectEntities.Domain.Entities.Category", b =>
@@ -230,7 +316,7 @@ namespace VoipProjectEntities.Persistence.Migrations
                             Artist = "John Egbert",
                             CategoryId = new Guid("b0788d2f-8003-43c1-92a4-edc76a7c5dde"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 4, 27, 17, 48, 21, 458, DateTimeKind.Local).AddTicks(7502),
+                            Date = new DateTime(2022, 4, 27, 18, 45, 41, 946, DateTimeKind.Local).AddTicks(1010),
                             Description = "Join John for his farwell tour across 15 continents. John really needs no introduction since he has already mesmerized the world with his banjo.",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
                             Name = "John Egbert Live",
@@ -242,7 +328,7 @@ namespace VoipProjectEntities.Persistence.Migrations
                             Artist = "Michael Johnson",
                             CategoryId = new Guid("b0788d2f-8003-43c1-92a4-edc76a7c5dde"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 7, 27, 17, 48, 21, 460, DateTimeKind.Local).AddTicks(2730),
+                            Date = new DateTime(2022, 7, 27, 18, 45, 41, 948, DateTimeKind.Local).AddTicks(1294),
                             Description = "Michael Johnson doesn't need an introduction. His 25 concert across the globe last year were seen by thousands. Can we add you to the list?",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/michael.jpg",
                             Name = "The State of Affairs: Michael Live!",
@@ -254,7 +340,7 @@ namespace VoipProjectEntities.Persistence.Migrations
                             Artist = "DJ 'The Mike'",
                             CategoryId = new Guid("b0788d2f-8003-43c1-92a4-edc76a7c5dde"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 2, 27, 17, 48, 21, 460, DateTimeKind.Local).AddTicks(2881),
+                            Date = new DateTime(2022, 2, 27, 18, 45, 41, 948, DateTimeKind.Local).AddTicks(1508),
                             Description = "DJs from all over the world will compete in this epic battle for eternal fame.",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/dj.jpg",
                             Name = "Clash of the DJs",
@@ -266,7 +352,7 @@ namespace VoipProjectEntities.Persistence.Migrations
                             Artist = "Manuel Santinonisi",
                             CategoryId = new Guid("b0788d2f-8003-43c1-92a4-edc76a7c5dde"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 2, 27, 17, 48, 21, 460, DateTimeKind.Local).AddTicks(2928),
+                            Date = new DateTime(2022, 2, 27, 18, 45, 41, 948, DateTimeKind.Local).AddTicks(1578),
                             Description = "Get on the hype of Spanish Guitar concerts with Manuel.",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/guitar.jpg",
                             Name = "Spanish guitar hits with Manuel",
@@ -278,7 +364,7 @@ namespace VoipProjectEntities.Persistence.Migrations
                             Artist = "Many",
                             CategoryId = new Guid("fe98f549-e790-4e9f-aa16-18c2292a2ee9"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 8, 27, 17, 48, 21, 460, DateTimeKind.Local).AddTicks(2971),
+                            Date = new DateTime(2022, 8, 27, 18, 45, 41, 948, DateTimeKind.Local).AddTicks(1640),
                             Description = "The best tech conference in the world",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/conf.jpg",
                             Name = "Techorama 2021",
@@ -290,7 +376,7 @@ namespace VoipProjectEntities.Persistence.Migrations
                             Artist = "Nick Sailor",
                             CategoryId = new Guid("6313179f-7837-473a-a4d5-a5571b43e6a6"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Date = new DateTime(2022, 6, 27, 17, 48, 21, 460, DateTimeKind.Local).AddTicks(3010),
+                            Date = new DateTime(2022, 6, 27, 18, 45, 41, 948, DateTimeKind.Local).AddTicks(1709),
                             Description = "The critics are over the moon and so will you after you've watched this sing and dance extravaganza written by Nick Sailor, the man from 'My dad and sister'.",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
                             Name = "To the Moon and Back",
@@ -339,7 +425,7 @@ namespace VoipProjectEntities.Persistence.Migrations
                             Id = new Guid("7e94bc5b-71a5-4c8c-bc3b-71bb7976237e"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 10, 27, 17, 48, 21, 460, DateTimeKind.Local).AddTicks(4674),
+                            OrderPlaced = new DateTime(2021, 10, 27, 18, 45, 41, 948, DateTimeKind.Local).AddTicks(4508),
                             OrderTotal = 400,
                             UserId = new Guid("a441eb40-9636-4ee6-be49-a66c5ec1330b")
                         },
@@ -348,7 +434,7 @@ namespace VoipProjectEntities.Persistence.Migrations
                             Id = new Guid("86d3a045-b42d-4854-8150-d6a374948b6e"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 10, 27, 17, 48, 21, 460, DateTimeKind.Local).AddTicks(5753),
+                            OrderPlaced = new DateTime(2021, 10, 27, 18, 45, 41, 948, DateTimeKind.Local).AddTicks(6368),
                             OrderTotal = 135,
                             UserId = new Guid("ac3cfaf5-34fd-4e4d-bc04-ad1083ddc340")
                         },
@@ -357,7 +443,7 @@ namespace VoipProjectEntities.Persistence.Migrations
                             Id = new Guid("771cca4b-066c-4ac7-b3df-4d12837fe7e0"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 10, 27, 17, 48, 21, 460, DateTimeKind.Local).AddTicks(5819),
+                            OrderPlaced = new DateTime(2021, 10, 27, 18, 45, 41, 948, DateTimeKind.Local).AddTicks(6485),
                             OrderTotal = 85,
                             UserId = new Guid("d97a15fc-0d32-41c6-9ddf-62f0735c4c1c")
                         },
@@ -366,7 +452,7 @@ namespace VoipProjectEntities.Persistence.Migrations
                             Id = new Guid("3dcb3ea0-80b1-4781-b5c0-4d85c41e55a6"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 10, 27, 17, 48, 21, 460, DateTimeKind.Local).AddTicks(5852),
+                            OrderPlaced = new DateTime(2021, 10, 27, 18, 45, 41, 948, DateTimeKind.Local).AddTicks(6544),
                             OrderTotal = 245,
                             UserId = new Guid("4ad901be-f447-46dd-bcf7-dbe401afa203")
                         },
@@ -375,7 +461,7 @@ namespace VoipProjectEntities.Persistence.Migrations
                             Id = new Guid("e6a2679c-79a3-4ef1-a478-6f4c91b405b6"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 10, 27, 17, 48, 21, 460, DateTimeKind.Local).AddTicks(5885),
+                            OrderPlaced = new DateTime(2021, 10, 27, 18, 45, 41, 948, DateTimeKind.Local).AddTicks(6602),
                             OrderTotal = 142,
                             UserId = new Guid("7aeb2c01-fe8e-4b84-a5ba-330bdf950f5c")
                         },
@@ -384,7 +470,7 @@ namespace VoipProjectEntities.Persistence.Migrations
                             Id = new Guid("f5a6a3a0-4227-4973-abb5-a63fbe725923"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 10, 27, 17, 48, 21, 460, DateTimeKind.Local).AddTicks(5920),
+                            OrderPlaced = new DateTime(2021, 10, 27, 18, 45, 41, 948, DateTimeKind.Local).AddTicks(6663),
                             OrderTotal = 40,
                             UserId = new Guid("f5a6a3a0-4227-4973-abb5-a63fbe725923")
                         },
@@ -393,7 +479,7 @@ namespace VoipProjectEntities.Persistence.Migrations
                             Id = new Guid("ba0eb0ef-b69b-46fd-b8e2-41b4178ae7cb"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OrderPaid = true,
-                            OrderPlaced = new DateTime(2021, 10, 27, 17, 48, 21, 460, DateTimeKind.Local).AddTicks(5950),
+                            OrderPlaced = new DateTime(2021, 10, 27, 18, 45, 41, 948, DateTimeKind.Local).AddTicks(6719),
                             OrderTotal = 116,
                             UserId = new Guid("7aeb2c01-fe8e-4b84-a5ba-330bdf950f5c")
                         });
@@ -415,6 +501,31 @@ namespace VoipProjectEntities.Persistence.Migrations
                         .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("VoipMainProject.Domain.Entities.AgentCustomer", b =>
+                {
+                    b.HasOne("Voip2.Domain.Entities.Customer", "Customers")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+                });
+
+            modelBuilder.Entity("VoipMainProject.Domain.Entities.BalanceCustomer", b =>
+                {
+                    b.HasOne("Voip2.Domain.Entities.Customer", "Customers")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+                });
+
+            modelBuilder.Entity("VoipMainProject.Domain.Entities.CallRecordingAgent", b =>
+                {
+                    b.HasOne("VoipMainProject.Domain.Entities.AgentCustomer", "AgentCustomers")
+                        .WithMany()
+                        .HasForeignKey("AgentCustomerID");
+
+                    b.HasOne("Voip2.Domain.Entities.Customer", "Customers")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
                 });
 
             modelBuilder.Entity("VoipProjectEntities.Domain.Entities.Event", b =>
